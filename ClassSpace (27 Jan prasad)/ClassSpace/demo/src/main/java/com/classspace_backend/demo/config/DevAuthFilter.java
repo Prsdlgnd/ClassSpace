@@ -27,7 +27,7 @@ public class DevAuthFilter extends OncePerRequestFilter {
 
     public DevAuthFilter(UserRepository userRepository) {
         this.userRepository = userRepository;
-        System.out.println("🔥 DevAuthFilter CONSTRUCTED");
+        System.out.println("DevAuthFilter CONSTRUCTED");
     }
     
    
@@ -42,7 +42,7 @@ public class DevAuthFilter extends OncePerRequestFilter {
             
     ) throws ServletException, IOException {
     	
-    	System.out.println("🔥 DevAuthFilter EXECUTED for " + request.getRequestURI());
+    	System.out.println("DevAuthFilter EXECUTED for " + request.getRequestURI());
 
 
         // Inject fake teacher ONLY if no auth exists

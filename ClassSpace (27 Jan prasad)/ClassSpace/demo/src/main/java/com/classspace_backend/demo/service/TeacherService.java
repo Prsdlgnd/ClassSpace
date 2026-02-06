@@ -44,9 +44,8 @@ public class TeacherService {
         
     }
 
-    // ==========================
-    // 1️⃣ Teacher Dashboard
-    // ==========================
+    
+    // 1️ Teacher Dashboard
     public List<TeacherTimetableDto> getTeacherTimetable(Long teacherId) {
 
         List<TeacherTimetableDto> timetable =
@@ -74,9 +73,8 @@ public class TeacherService {
         };
     }
 
-    // ==========================
-    // 2️⃣ Create lecture instance (date-wise)
-    // ==========================
+    
+    //  Create lecture instance (date-wise)
     public Lecture createLecture(Long timetableId) {
         Lecture lecture = new Lecture();
         lecture.setTimetable(
@@ -88,57 +86,57 @@ public class TeacherService {
         return lectureRepository.save(lecture);
     }
 
-    // ==========================
-    // 3️⃣ Cancel lecture
-    // ==========================
+    
+    //  Cancel lecture
+    
     public void cancelLecture(Long lectureId, Long teacherId) {
 
         Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(() -> new RuntimeException("Lecture not found"));
 
-        // 1️⃣ Cancel lecture
+        //  Cancel lecture
         lecture.setStatus(LectureStatus.CANCELLED);
         lecture.setCancelledAt(LocalDateTime.now());
         lectureRepository.save(lecture);
 
-        // 2️⃣ Get required entities (IMPORTANT PART)
-        User teacher = lecture.getTimetable().getTeacher();          // ✅ User entity
-        Classes classEntity = lecture.getTimetable().getClassEntity(); // ✅ Classes entity
+        //  Get required entities (IMPORTANT PART)
+        User teacher = lecture.getTimetable().getTeacher();          //  User entity
+        Classes classEntity = lecture.getTimetable().getClassEntity(); //  Classes entity
 
-        // 3️⃣ Create announcement (ENTITY SET KARO)
+        // Create announcement (ENTITY SET KARO)
         Announcement ann = new Announcement();
         ann.setTitle("Lecture Cancelled");
         ann.setMessage("Today's lecture has been cancelled.");
-        ann.setCreatedBy(teacher);        // ✅ ENTITY
-        ann.setClassEntity(classEntity);  // ✅ ENTITY
+        ann.setCreatedBy(teacher);        //  ENTITY
+        ann.setClassEntity(classEntity);  //  ENTITY
 
         announcementRepository.save(ann);
     }
 
 
-    // ==========================
-    // 4️⃣ Upload notes (past lecture)
-    // ==========================
+    
+    // Upload notes (past lecture)
+    
     public void uploadNotes(
             Long lectureId,
             MultipartFile file,
             Long teacherId
     ) {
-        // 1️⃣ Get lecture
+        // Get lecture
         Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(() -> new RuntimeException("Lecture not found"));
 
-        // 2️⃣ Get teacher (User entity)
+        //  Get teacher (User entity)
         User teacher = userRepository.findById(teacherId)
                 .orElseThrow(() -> new RuntimeException("Teacher not found"));
 
-        // 3️⃣ File upload logic (placeholder)
+        //  File upload logic (placeholder)
         String driveLink = "https://drive.fake/" + file.getOriginalFilename();
 
-        // 4️⃣ Save note
+        // 4 Save note
         Note note = new Note();
         note.setLecture(lecture);
-        note.setUploadedBy(teacher);   // ✅ CORRECT
+        note.setUploadedBy(teacher);   //  CORRECT
         note.setDriveLink(driveLink);
         note.setVersion(1);
 

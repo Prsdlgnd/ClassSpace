@@ -46,7 +46,7 @@ public class Feedback {
         this.submittedAt = LocalDateTime.now();
     }
 
-    // ===== getters & setters =====
+    // getters & setters 
 
     public Long getFeedbackId() {
         return feedbackId;

@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
                 .body(ex.getMessage());
     }
 
-    // 🔥 fallback (safety net)
+    // fallback (safety net)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleAny(Exception ex) {
         ex.printStackTrace(); // server log only

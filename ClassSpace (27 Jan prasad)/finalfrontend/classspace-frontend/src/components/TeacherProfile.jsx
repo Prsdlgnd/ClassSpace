@@ -38,7 +38,7 @@ const TeacherProfile = () => {
                 <Navbar />
                 <div className="tp-page">
                     <div className="tp-error-wrap animated fadeIn">
-                        <div className="error-icon">❌</div>
+                        <div className="error-icon"></div>
                         <h3>Oops! Something went wrong</h3>
                         <p>{error || "We couldn't retrieve your profile details."}</p>
                         <button className="retry-btn" onClick={() => window.location.reload()}>Retry</button>

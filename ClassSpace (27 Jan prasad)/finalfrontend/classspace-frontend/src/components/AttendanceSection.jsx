@@ -109,7 +109,7 @@ function AttendanceSection({ lectureId }) {
           <span className="lp-loading">Updating...</span>
         ) : message ? (
           <span className={messageType === 'error' ? 'lp-error-msg' : 'lp-success-msg'}>
-            {messageType === 'error' ? '⚠️ ' : '✓ '}
+            {messageType === 'error' ? '' : '✓ '}
             {message}
           </span>
         ) : (

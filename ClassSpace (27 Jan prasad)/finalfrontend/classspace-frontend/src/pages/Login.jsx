@@ -79,7 +79,7 @@ const Login = () => {
     <div className="login-page">
       <div className="login-card">
 
-        {/* 🔥 TOP RIGHT REGISTER */}
+        {/*  TOP RIGHT REGISTER */}
         <div className="register-top">
           <span onClick={() => navigate("/register")}>
             Register Here!
@@ -87,7 +87,7 @@ const Login = () => {
         </div>
 
         <div className="login-header">
-          <div className="logo">📅</div>
+          <div className="logo"></div>
           <h1>ClassSpace</h1>
           <p>Your Smart Timetable & Learning Platform</p>
         </div>

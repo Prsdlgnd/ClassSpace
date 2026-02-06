@@ -40,9 +40,9 @@ public class AttendanceService {
         this.userRepo = userRepo;
     }
 
-    // ===============================
-    // 1️⃣ STUDENT POLL
-    // ===============================
+    
+    //  STUDENT POLL
+    
     public void declareAttendance(Long lectureId, Long studentId, DeclaredStatus status) {
 
         Lecture lecture = lectureRepo.findById(lectureId)
@@ -69,9 +69,8 @@ public class AttendanceService {
         declaredRepo.save(ad);
     }
 
-    // =====================================
-    // 2️⃣ COORDINATOR UPLOAD (API / Excel)
-    // =====================================
+    
+    //  COORDINATOR UPLOAD (API / Excel)
     @Transactional
     public void uploadActual(Long lectureId, Long studentId, ActualStatus actual) {
 
@@ -116,7 +115,7 @@ public class AttendanceService {
                     return s;
                 });
 
-        // 🔒 SAFE-GUARD: update integrity ONLY once per lecture
+        // SAFE-GUARD: update integrity ONLY once per lecture
         if (isNewAttendance[0]) {
             score.setTotalLectures(score.getTotalLectures() + 1);
 
@@ -135,9 +134,9 @@ public class AttendanceService {
         integrityRepo.save(score);
     }
 
-    // ===============================
-    // 3️⃣ GET INTEGRITY SCORE
-    // ===============================
+   
+    // GET INTEGRITY SCORE
+    
     public IntegrityScore getIntegrityScore(Long studentId) {
         return integrityRepo.findById(studentId)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -145,9 +144,8 @@ public class AttendanceService {
                 ));
     }
 
-    // ===============================
-    // 4️⃣ EXCEL UPLOAD
-    // ===============================
+    
+    // EXCEL UPLOAD
     @Transactional
     public void uploadActualFromExcel(MultipartFile file) throws Exception {
 

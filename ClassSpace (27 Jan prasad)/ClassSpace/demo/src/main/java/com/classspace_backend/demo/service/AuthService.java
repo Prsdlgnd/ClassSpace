@@ -50,15 +50,15 @@ public class AuthService {
     @Autowired
     private PasswordResetOtpRepository otpRepository;
 
-    // =========================
+   
     // LOGIN
-    // =========================
+   
     public ResponseEntity<?> login(LoginRequestDto dto,
                                    HttpServletRequest request) {
 
         User user;
 
-        // 🔹 STUDENT LOGIN (PRN)
+        //  STUDENT LOGIN (PRN)
         if ("STUDENT".equals(dto.getRole())) {
 
             Student student = studentRepository.findByPrn(dto.getUsername())
@@ -69,21 +69,21 @@ public class AuthService {
                     .orElseThrow(() ->
                             new UnauthorizedException("Invalid PRN or password"));
         }
-        // 🔹 TEACHER LOGIN (EMAIL)
+        // TEACHER LOGIN (EMAIL)
         else {
             user = userRepository.findByEmail(dto.getUsername())
                     .orElseThrow(() ->
                             new UnauthorizedException("Invalid email or password"));
         }
 
-        // 🔐 PASSWORD CHECK
+        //  PASSWORD CHECK
         if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
             throw new UnauthorizedException("Invalid credentials");
         }
 
         String role = user.getRole().getRoleName();
 
-        // 🔒 ROLE VALIDATION
+        //  ROLE VALIDATION
         if ("STUDENT".equals(dto.getRole())
                 && !(role.equals("STUDENT") || role.equals("COORDINATOR"))) {
             throw new UnauthorizedException("Access denied");
@@ -93,12 +93,12 @@ public class AuthService {
             throw new UnauthorizedException("Access denied");
         }
 
-        // 🧠 CREATE SESSION
+        //  CREATE SESSION
         HttpSession session = request.getSession(true);
         session.setAttribute("USER_ID", user.getUserId());
         session.setAttribute("ROLE", role);
 
-        // 🔁 FIRST LOGIN → FORCE PASSWORD CHANGE
+        //  FIRST LOGIN → FORCE PASSWORD CHANGE
         if (passwordEncoder.matches(dto.getUsername(), user.getPassword())) {
             return ResponseEntity.status(428)
                     .body("FORCE_PASSWORD_CHANGE");
@@ -107,9 +107,9 @@ public class AuthService {
         return ResponseEntity.ok(role + "_LOGIN_SUCCESS");
     }
 
-    // =========================
+    
     // SEND OTP
-    // =========================
+   
     @Transactional
     public ResponseEntity<?> sendOtp(SendOtpDto dto) {
 
@@ -135,9 +135,9 @@ public class AuthService {
         return ResponseEntity.ok("OTP_SENT");
     }
 
-    // =========================
+   
     // VERIFY OTP
-    // =========================
+   
     public ResponseEntity<?> verifyOtp(VerifyOtpDto dto) {
 
         PasswordResetOtp otpEntity = otpRepository
@@ -163,16 +163,15 @@ public class AuthService {
         return ResponseEntity.ok("OTP_VERIFIED");
     }
 
-    // =========================
+    
     // CHANGE PASSWORD (COMMON)
-    // =========================
     public ResponseEntity<?> changePassword(ChangePasswordDto dto,
                                             HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);
         User user;
 
-        // 🔹 CASE 1: FIRST LOGIN (SESSION)
+        // CASE 1: FIRST LOGIN (SESSION)
         if (session != null && session.getAttribute("USER_ID") != null) {
 
             Long userId = (Long) session.getAttribute("USER_ID");
@@ -180,7 +179,7 @@ public class AuthService {
                     .orElseThrow(() ->
                             new NotFoundException("User not found"));
         }
-        // 🔹 CASE 2: FORGOT PASSWORD (OTP)
+        //  CASE 2: FORGOT PASSWORD (OTP)
         else {
             PasswordResetOtp otpEntity = otpRepository
                     .findTopByEmailOrderByCreatedAtDesc(dto.getEmail())
@@ -211,7 +210,7 @@ public class AuthService {
     @Transactional
     public ResponseEntity<?> sendRegisterOtp(RegisterSendOtpDto dto) {
 
-        // ❌ email already registered
+        //  email already registered
         if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
             throw new BadRequestException("Email already registered");
         }
@@ -263,11 +262,11 @@ public class AuthService {
             throw new BadRequestException("Invalid OTP");
         }
 
-        // ✅ Mark OTP verified
+        //  Mark OTP verified
         otpEntity.setVerified(true);
         otpRepository.save(otpEntity);
 
-        // 🔐 CREATE USER (temp password)
+        //  CREATE USER (temp password)
         User user = new User();
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
@@ -280,26 +279,26 @@ public class AuthService {
         user.setPhone(dto.getPhone());
 
         userRepository.save(user);
-        userRepository.flush(); // 🔥 ensure ID generated
+        userRepository.flush(); //  ensure ID generated
 
-        // 🎓 CREATE STUDENT PROFILE
+        //  CREATE STUDENT PROFILE
         Student student = new Student();
-        student.setUser(user);          // 🔑 MapsId link
+        student.setUser(user);          // MapsId link
         student.setPrn(dto.getPrn());
         student.setBranch(null);
         student.setDivision(null);
 
         studentRepository.save(student);
 
-        // 🧠 CREATE SESSION (FORCE PASSWORD CHANGE FLOW)
+        //  CREATE SESSION (FORCE PASSWORD CHANGE FLOW)
         HttpSession session = request.getSession(true);
         session.setAttribute("USER_ID", user.getUserId());
         session.setAttribute("ROLE", "STUDENT");
 
-        // 🧹 Cleanup OTP
+        //  Cleanup OTP
         otpRepository.delete(otpEntity);
 
-        // 🔁 FORCE USER TO SET PASSWORD
+        //  FORCE USER TO SET PASSWORD
         return ResponseEntity.status(428)
                 .body("FORCE_PASSWORD_CHANGE");
     }

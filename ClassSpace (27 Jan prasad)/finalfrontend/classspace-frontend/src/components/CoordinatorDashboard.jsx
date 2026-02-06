@@ -251,7 +251,7 @@ export default function CoordinatorDashboard() {
               ) : (
                 classes.map(cls => (
                   <div key={cls.classId} className="glass-card action-cube" onClick={() => openClassView(cls)}>
-                    <div className="icon">🏛️</div>
+                    <div className="icon"></div>
                     <div>
                       <h3>{cls.className}</h3>
                       <p>View Divisions & Enrolments</p>
@@ -266,27 +266,27 @@ export default function CoordinatorDashboard() {
             <h2 style={{ marginBottom: '20px', fontSize: '1.5rem', fontWeight: 600 }}>Administrative Control Hub</h2>
             <div className="selection-grid">
               <div className="glass-card action-cube" onClick={() => setShowAddStudentModal(true)}>
-                <div className="icon" style={{ color: '#38bdf8' }}>🎓</div>
+                <div className="icon" style={{ color: '#38bdf8' }}></div>
                 <h3>Enroll Student</h3>
                 <p>Add individual records</p>
               </div>
               <div className="glass-card action-cube" onClick={() => setShowAddTeacherModal(true)}>
-                <div className="icon" style={{ color: '#8b5cf6' }}>👨‍🏫</div>
+                <div className="icon" style={{ color: '#8b5cf6' }}></div>
                 <h3>Register Faculty</h3>
                 <p>Onboard new teachers</p>
               </div>
               <div className="glass-card action-cube" onClick={() => setShowAnnouncementModal(true)}>
-                <div className="icon" style={{ color: '#fb923c' }}>📢</div>
+                <div className="icon" style={{ color: '#fb923c' }}></div>
                 <h3>Broadcast</h3>
                 <p>Post department news</p>
               </div>
               <div className="glass-card action-cube" onClick={() => setShowBulkUploadModal(true)}>
-                <div className="icon" style={{ color: '#10b981' }}>👥</div>
+                <div className="icon" style={{ color: '#10b981' }}></div>
                 <h3>Bulk Import</h3>
                 <p>Process Excel Student files</p>
               </div>
               <div className="glass-card action-cube" onClick={() => setShowBulkTimetableModal(true)}>
-                <div className="icon" style={{ color: '#ec4899' }}>📅</div>
+                <div className="icon" style={{ color: '#ec4899' }}></div>
                 <h3>Bulk Schedule</h3>
                 <p>Process Timetable Excel</p>
               </div>
@@ -308,7 +308,7 @@ export default function CoordinatorDashboard() {
                 className="glass-card action-cube"
                 onClick={() => handleDivisionSelect(div)}
               >
-                <div className="icon">📂</div>
+                <div className="icon"></div>
                 <h3>Division {div}</h3>
                 <p>Access Schedule & Student List</p>
               </div>
@@ -341,7 +341,7 @@ export default function CoordinatorDashboard() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', borderBottom: '1px solid var(--glass-border)', paddingBottom: '15px' }}>
               <h3 style={{ margin: 0 }}>Registered Students</h3>
               <div className="search-wrapper">
-                <span className="search-icon">🔍</span>
+                <span className="search-icon"></span>
                 <input
                   type="text"
                   placeholder="Filter by name..."
@@ -438,7 +438,7 @@ export default function CoordinatorDashboard() {
           gap: '12px',
           zIndex: 9999,
         }}>
-          <span style={{ fontSize: '20px' }}>✅</span>
+          <span style={{ fontSize: '20px' }}></span>
           <span style={{ fontWeight: 'bold' }}>{successPopup}</span>
           <button onClick={() => setSuccessPopup(null)} style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', marginLeft: '10px', fontSize: '18px' }}>×</button>
         </div>
@@ -709,7 +709,7 @@ function ManageLectureModal({ details, isResolving, slot, onClose }) {
               {(details.feedbacks || []).length === 0 ? <p style={{ fontSize: '13px', color: '#94a3b8' }}>No feedbacks yet.</p> :
                 (details.feedbacks || []).map((f, i) => (
                   <div key={i} style={{ padding: '8px', borderBottom: i < (details.feedbacks || []).length - 1 ? '1px solid #f1f5f9' : 'none' }}>
-                    <div style={{ fontSize: '12px', fontWeight: 'bold' }}>Rating: {f.rating}⭐ | Understood: {f.understand}</div>
+                    <div style={{ fontSize: '12px', fontWeight: 'bold' }}>Rating: {f.rating} | Understood: {f.understand}</div>
                     <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#475569' }}>{f.comment || "No comment"}</p>
                   </div>
                 ))}

@@ -27,7 +27,7 @@ public class AttendanceActual {
     @Column(name = "actual_status", nullable = false)
     private ActualStatus actualStatus;
 
-    // ===== getters & setters =====
+    // getters & setters 
 
     public Long getId() {
         return id;

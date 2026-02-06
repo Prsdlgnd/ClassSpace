@@ -29,12 +29,12 @@ public class Announcement {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    // ===== Constructors =====
+    // Constructors 
 
     public Announcement() {
     }
 
-    // ===== Getters & Setters =====
+    // Getters & Setters 
 
     public Long getAnnouncementId() {
         return announcementId;

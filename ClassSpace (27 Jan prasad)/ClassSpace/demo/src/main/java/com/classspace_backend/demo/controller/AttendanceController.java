@@ -21,9 +21,8 @@ public class AttendanceController {
         this.service = service;
     }
 
-    // ==============================
-    // 1️⃣ STUDENT ATTENDANCE POLL
-    // ==============================
+    
+    // STUDENT ATTENDANCE POLL
     @PostMapping("/declare")
     public ResponseEntity<String> declare(@RequestBody AttendanceDTO dto) {
         try {
@@ -37,9 +36,8 @@ public class AttendanceController {
         }
     }
 
-    // ==============================
-    // 2️⃣ COORDINATOR UPLOAD ACTUAL ATTENDANCE (single student)
-    // ==============================
+    
+    // COORDINATOR UPLOAD ACTUAL ATTENDANCE (single student)
     @PostMapping("/actual")
     public ResponseEntity<String> upload(@RequestBody AttendanceDTO dto) {
         try {
@@ -53,9 +51,8 @@ public class AttendanceController {
         }
     }
 
-    // ==============================
-    // 3️⃣ COORDINATOR UPLOAD ACTUAL ATTENDANCE (Excel file)
-    // ==============================
+    
+    // COORDINATOR UPLOAD ACTUAL ATTENDANCE (Excel file)
     @PostMapping("/actual/upload")
     public ResponseEntity<String> uploadExcel(@RequestParam("file") MultipartFile file) {
         try {
@@ -67,9 +64,8 @@ public class AttendanceController {
         }
     }
 
-    // ==============================
-    // 4️⃣ GET INTEGRITY SCORE
-    // ==============================
+    
+    //GET INTEGRITY SCORE
     @GetMapping("/integrity/{studentId}")
     public ResponseEntity<?> getIntegrity(@PathVariable Long studentId) {
         try {

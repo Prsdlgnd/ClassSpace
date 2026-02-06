@@ -42,9 +42,9 @@ const Register = () => {
     setError("");
   };
 
-  // =========================
+  
   // STEP 1 → SEND OTP
-  // =========================
+
   const sendOtp = async (e) => {
     e.preventDefault();
 
@@ -89,9 +89,8 @@ const Register = () => {
     }
   };
 
-  // =========================
+ 
   // STEP 2 → VERIFY OTP
-  // =========================
   const verifyOtp = async () => {
     if (!otp) {
       setError("OTP is required");
@@ -106,7 +105,7 @@ const Register = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          credentials: "include", // 🔥 session set hoga
+          credentials: "include", //  session set hoga
           body: JSON.stringify({
             ...form,
             otp,
@@ -116,7 +115,7 @@ const Register = () => {
 
       const msg = await res.text();
 
-      // 🔥 REGISTER → FORCE PASSWORD SET
+      //  REGISTER → FORCE PASSWORD SET
       if (res.status === 428) {
         navigate("/change-password", { state: { email: form.email, flow: "register" } });
 

@@ -41,7 +41,7 @@ public class Lecture {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ===== getters & setters =====
+   
 
     public Long getLectureId() {
         return lectureId;

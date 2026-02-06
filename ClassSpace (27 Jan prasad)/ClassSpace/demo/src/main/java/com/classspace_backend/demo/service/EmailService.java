@@ -17,14 +17,14 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ClassSpace <sohampatil363@gmail.com>");
         message.setTo(to);
-        message.setSubject("🔐 Verify your email for ClassSpace");
+        message.setSubject(" Verify your email for ClassSpace");
 
         message.setText(
-            "Hi 👋\n\n" +
+            "Hi \n\n" +
             "Welcome to ClassSpace!\n\n" +
             "Your username (PRN / Roll No): " + prn + "\n\n" +
             "Your OTP for completing registration is:\n\n" +
-            "👉 " + otp + "\n\n" +
+            " " + otp + "\n\n" +
             "This OTP is valid for 5 minutes.\n\n" +
             "If you did not initiate this request, please ignore this email.\n\n" +
             "Thanks,\n" +
@@ -40,13 +40,13 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ClassSpace <sohampatil363@gmail.com>");
         message.setTo(to);
-        message.setSubject("🔑 Reset your ClassSpace password");
+        message.setSubject(" Reset your ClassSpace password");
 
         message.setText(
-            "Hi 👋\n\n" +
+            "Hi \n\n" +
             "We received a request to reset your ClassSpace password.\n\n" +
             "Your OTP for password reset is:\n\n" +
-            "👉 " + otp + "\n\n" +
+            " " + otp + "\n\n" +
             "This OTP is valid for 5 minutes.\n\n" +
             "If you did not request a password reset, you can safely ignore this email.\n\n" +
             "Regards,\n" +

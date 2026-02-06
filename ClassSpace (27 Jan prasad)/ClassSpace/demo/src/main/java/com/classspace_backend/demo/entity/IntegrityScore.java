@@ -33,7 +33,7 @@ public class IntegrityScore {
     )
     private BigDecimal integrityPercentage = new BigDecimal("100.00");
 
-    // ===== getters & setters =====
+   
 
     public Long getStudentId() {
         return studentId;

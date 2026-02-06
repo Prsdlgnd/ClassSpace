@@ -25,7 +25,7 @@ public class Classes {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    // ===== getters and setters =====
+    // getters and setters 
 
     public Long getClassId() {
         return classId;

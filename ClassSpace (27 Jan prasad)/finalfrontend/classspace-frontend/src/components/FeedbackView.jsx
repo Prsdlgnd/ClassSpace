@@ -126,21 +126,21 @@ export default function FeedbackView({ lectureId }) {
         {/* ... existing stats grid ... */}
         <div className="stats-grid">
           <div className="stat-card total">
-            <div className="stat-icon">👥</div>
+            <div className="stat-icon"></div>
             <div className="stat-content">
               <span className="stat-label">Total Enrolled</span>
               <span className="stat-value">{lectureInfo?.totalStudents || 0}</span>
             </div>
           </div>
           <div className="stat-card expected">
-            <div className="stat-icon">✅</div>
+            <div className="stat-icon"></div>
             <div className="stat-content">
               <span className="stat-label">Expected (YES)</span>
               <span className="stat-value">{lectureInfo?.expectedStudents || 0}</span>
             </div>
           </div>
           <div className="stat-card absent">
-            <div className="stat-icon">❌</div>
+            <div className="stat-icon"></div>
             <div className="stat-content">
               <span className="stat-label">Likely Absent</span>
               <span className="stat-value">{lectureInfo?.likelyAbsentStudents || 0}</span>
@@ -151,15 +151,15 @@ export default function FeedbackView({ lectureId }) {
         <div className="tf-summary">
           <div className="tf-summary-card">
             <div className="tf-label">Average Stars</div>
-            <div className="tf-value">⭐ {Number(feedbackData?.averageStars || 0).toFixed(1)}</div>
+            <div className="tf-value"> {Number(feedbackData?.averageStars || 0).toFixed(1)}</div>
           </div>
           <div className="tf-summary-card">
             <div className="tf-label">Understood</div>
-            <div className="tf-value">👍 {feedbackData?.understoodCount || 0}</div>
+            <div className="tf-value"> {feedbackData?.understoodCount || 0}</div>
           </div>
           <div className="tf-summary-card">
             <div className="tf-label">Total Feedback</div>
-            <div className="tf-value">📝 {feedbackData?.totalFeedback || 0}</div>
+            <div className="tf-value">{feedbackData?.totalFeedback || 0}</div>
           </div>
         </div>
 
@@ -179,9 +179,9 @@ export default function FeedbackView({ lectureId }) {
                 }}
               >
                 <div className="tf-card-top">
-                  <div className="tf-stars">⭐ {fb.stars} / 5</div>
+                  <div className="tf-stars"> {fb.stars} / 5</div>
                   <div className={`tf-understand ${fb.understoodTopic ? 'yes' : 'no'}`}>
-                    {fb.understoodTopic ? "✅ Understood" : "❌ Confused"}
+                    {fb.understoodTopic ? " Understood" : " Confused"}
                   </div>
                 </div>
                 <div className="tf-comment">"{fb.comment || "No comment provided."}"</div>

@@ -51,7 +51,7 @@ public class Note {
     
     
 
-    // ===== getters & setters =====
+    
 
     public Long getNoteId() {
         return noteId;

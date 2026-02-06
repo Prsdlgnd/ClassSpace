@@ -65,7 +65,7 @@ const StudentDashboard = () => {
   const handleSlotClick = async (slot, day) => {
     if (!slot) return;
 
-    // 🔴 Students NEVER have lectureId directly
+    // Students NEVER have lectureId directly
     // Always resolve lecture first
 
     const timetableId = slot.timetableId ?? slot.id;
@@ -133,7 +133,7 @@ const StudentDashboard = () => {
               </div>
             </div>
             <div className="coin-section">
-              <span className="coin-icon">🪙</span>
+              <span className="coin-icon"></span>
               <div>
                 <div className="coin-value">{integrity.coins}</div>
                 <div className="coin-label">ClassSpace Coins</div>
@@ -147,7 +147,7 @@ const StudentDashboard = () => {
             <div className="dashboard-col-left">
               <div className="section-card announcements-card">
                 <div className="card-header">
-                  <h2>📢 Announcements</h2>
+                  <h2>Announcements</h2>
                 </div>
                 <div className="card-body-scroll">
                   {announcements.length === 0 ? (
@@ -175,7 +175,7 @@ const StudentDashboard = () => {
             <div className="dashboard-col-right">
               <div className="section-card timetable-card">
                 <div className="card-header">
-                  <h2>📅 Weekly Timetable</h2>
+                  <h2> Weekly Timetable</h2>
                 </div>
                 <div className="card-body">
                   <div style={{ overflowX: 'auto' }}>

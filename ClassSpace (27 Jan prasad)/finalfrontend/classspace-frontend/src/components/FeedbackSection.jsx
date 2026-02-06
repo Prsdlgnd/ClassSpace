@@ -17,7 +17,7 @@ function FeedbackSection({ lectureId }) {
   const [messageType, setMessageType] = useState(""); // 'success', 'error', 'info'
 
   useEffect(() => {
-    if (!lectureId) return; // 🔥 very important guard
+    if (!lectureId) return; //  very important guard
 
     axios
       .get(`http://localhost:8080/api/feedback/status/${lectureId}`, {
@@ -76,7 +76,7 @@ function FeedbackSection({ lectureId }) {
     return (
       <div className="lp-feedback-disabled">
         <p className="lp-status lp-status--warning">
-          ⏳ Feedback will be available after the lecture ends
+           Feedback will be available after the lecture ends
         </p>
       </div>
     );
@@ -87,7 +87,7 @@ function FeedbackSection({ lectureId }) {
     return (
       <div className="lp-feedback-success">
         <p className="lp-status lp-status--success">
-          ✅ Feedback submitted successfully. Thank you!
+           Feedback submitted successfully. Thank you!
         </p>
       </div>
     );
@@ -134,7 +134,7 @@ function FeedbackSection({ lectureId }) {
             onClick={() => setStars(n)}
             disabled={submitting}
           >
-            ⭐
+            
           </button>
         ))}
       </div>
@@ -161,7 +161,7 @@ function FeedbackSection({ lectureId }) {
       <div className={`lp-status ${messageType ? `lp-status--${messageType}` : ''}`}>
         {message ? (
           <span className={messageType === 'error' ? 'lp-error-msg' : 'lp-success-msg'}>
-            {messageType === 'error' ? '⚠️ ' : '✓ '}
+            {messageType === 'error' ? ' ' : '✓ '}
             {message}
           </span>
         ) : (

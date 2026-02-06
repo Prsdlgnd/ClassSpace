@@ -26,7 +26,7 @@ public class Student {
     private String division;
 
     @OneToOne
-    @MapsId                      // 🔥 THIS IS THE KEY
+    @MapsId                      //  THIS IS THE KEY
     @JoinColumn(name = "student_id")
     @JsonIgnore                  // prevent infinite JSON loop
     private User user;

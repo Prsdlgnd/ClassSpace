@@ -28,8 +28,7 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    // -------- getters & setters --------
-
+    
     public Long getUserId() {
         return userId;
     }

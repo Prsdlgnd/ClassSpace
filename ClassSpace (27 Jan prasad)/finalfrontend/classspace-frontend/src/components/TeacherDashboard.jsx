@@ -12,18 +12,16 @@ const TeacherDashboard = () => {
   const [userName, setUserName] = useState("Professor");
   const navigate = useNavigate();
 
-  // ==========================
+  
   // FETCH USER INFO
-  // ==========================
   const fetchUserInfo = () => {
     axios.get("http://localhost:8080/auth/me", { withCredentials: true })
       .then(res => setUserName(res.data.name || "Professor"))
       .catch(() => { });
   };
 
-  // ==========================
+ 
   // FETCH TIMETABLE (REUSABLE)
-  // ==========================
   const fetchTimetable = () => {
     setLoading(true);
 
@@ -65,9 +63,8 @@ const TeacherDashboard = () => {
     ]
     : [];
 
-  // ==========================
+
   // LECTURE RESOLVE
-  // ==========================
   const handleSlotClick = async (slot, day, time) => {
     if (!slot) return;
 
@@ -106,7 +103,7 @@ const TeacherDashboard = () => {
   if (loading) {
     return (
       <>
-        {/* 🔥 PASS CALLBACK HERE */}
+        {/*  PASS CALLBACK HERE */}
         <Navbar onSlotCreated={fetchTimetable} />
 
         <div className="dashboard">
@@ -140,7 +137,7 @@ const TeacherDashboard = () => {
               </div>
               <div className="card-body">
                 <div className="empty-state">
-                  <div className="empty-icon">🔔</div>
+                  <div className="empty-icon"></div>
                   <p>No new announcements. You're all caught up!</p>
                 </div>
               </div>
@@ -149,14 +146,14 @@ const TeacherDashboard = () => {
             {/* TIMETABLE SECTION */}
             <div className="glass-card timetable-card animated slideInUp delay-1">
               <div className="card-header">
-                <span className="icon">📅</span>
+                <span className="icon"></span>
                 <h2>Weekly Timetable</h2>
               </div>
 
               <div className="card-body">
                 {timeSlots.length === 0 ? (
                   <div className="empty-table">
-                    <div className="empty-icon">🗓️</div>
+                    <div className="empty-icon"></div>
                     <p>No slots found in your timetable.</p>
                   </div>
                 ) : (

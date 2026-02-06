@@ -14,9 +14,9 @@ function Profile() {
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("success");
 
-  // =========================
-  // 🔹 FETCH PROFILE
-  // =========================
+  
+  //  FETCH PROFILE
+  
   useEffect(() => {
     fetch("http://localhost:8080/api/student/profile", {
       credentials: "include",
@@ -34,9 +34,8 @@ function Profile() {
       .catch(() => setLoading(false));
   }, []);
 
-  // =========================
-  // 🔹 INPUT CHANGE
-  // =========================
+  
+  // INPUT CHANGE
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -50,9 +49,8 @@ function Profile() {
     setProfile({ ...profile, [name]: value });
   };
 
-  // =========================
-  // 🔹 VALIDATIONS (DERIVED)
-  // =========================
+  
+  //  VALIDATIONS (DERIVED)
   const phoneInvalid =
     isEditing &&
     profile?.phone &&
@@ -63,9 +61,8 @@ function Profile() {
     profile?.address &&
     profile.address.trim().length < 5;
 
-  // =========================
-  // 🔹 CHECK CHANGES
-  // =========================
+  
+  //  CHECK CHANGES
   const hasChanges = () => {
     if (!profile || !originalProfile) return false;
 
@@ -76,11 +73,11 @@ function Profile() {
     );
   };
 
-  // =========================
-  // 🔹 SAVE
-  // =========================
+  
+  //  SAVE
+  
   const handleSave = async () => {
-    if (phoneInvalid || addressInvalid) return; // 🛑 HARD STOP
+    if (phoneInvalid || addressInvalid) return; //  HARD STOP
 
     try {
       const res = await fetch("http://localhost:8080/api/student/profile", {
@@ -114,9 +111,9 @@ function Profile() {
     }
   };
 
-  // =========================
-  // 🔹 LOADING / ERROR
-  // =========================
+  
+  //  LOADING / ERROR
+  
   if (loading) {
     return (
       <div className="tp-loader-wrap">
@@ -142,9 +139,9 @@ function Profile() {
     );
   }
 
-  // =========================
-  // 🔹 UI
-  // =========================
+  
+  //  UI
+  
   return (
     <>
       <Navbar />
@@ -169,7 +166,7 @@ function Profile() {
             {/* Edit Button */}
             {!isEditing && (
               <button className="tp-edit-btn" onClick={() => setIsEditing(true)}>
-                ✏️ Edit Profile
+                 Edit Profile
               </button>
             )}
           </div>
@@ -266,7 +263,7 @@ function Profile() {
                   disabled={!hasChanges() || phoneInvalid || addressInvalid}
                   onClick={handleSave}
                 >
-                  💾 Save Changes
+                   Save Changes
                 </button>
                 <button
                   className="tp-cancel-btn"
@@ -275,7 +272,7 @@ function Profile() {
                     setIsEditing(false);
                   }}
                 >
-                  ✖️ Cancel
+                   Cancel
                 </button>
               </div>
             )}

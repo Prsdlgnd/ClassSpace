@@ -47,7 +47,7 @@ function Navbar({ onSlotCreated }) {
 
   if (!user) return null;
 
-  // ✅ Role-based home + profile routes
+  //  Role-based home + profile routes
   const isTeacher = user.role === "TEACHER";
   const isStudent = user.role === "STUDENT";
   const isCoordinator = user.role === "COORDINATOR";

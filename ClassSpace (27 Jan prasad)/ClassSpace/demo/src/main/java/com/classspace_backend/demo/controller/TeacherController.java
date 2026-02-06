@@ -34,14 +34,13 @@ public class TeacherController {
 		this.userRepository = userRepository;
     }
 
-    // ==========================
-    // 1️⃣ Teacher Dashboard
-    // ==========================
+    
+    //Teacher Dashboard
     @GetMapping("/dashboard")
     public ResponseEntity<List<TeacherTimetableDto>> dashboard(
             Authentication authentication
     ) {
-        String email = authentication.getName(); // ✅ principal as username
+        String email = authentication.getName(); //principal as username
 
         // Fetch actual User entity yourself
         User teacher = userRepository.findByEmail(email)
@@ -54,9 +53,9 @@ public class TeacherController {
 
 
 
-    // ==========================
-    // 2️⃣ Create lecture (date-wise)
-    // ==========================
+   
+    //  Create lecture (date-wise)
+    
     @PostMapping("/lecture/create/{timetableId}")
     public ResponseEntity<Lecture> createLecture(
             @PathVariable Long timetableId
@@ -66,9 +65,8 @@ public class TeacherController {
         );
     }
 
-    // ==========================
-    // 3️⃣ Cancel lecture
-    // ==========================
+   
+    // Cancel lecture
     @PutMapping("/lecture/{lectureId}/cancel")
     public ResponseEntity<String> cancelLecture(
             @PathVariable Long lectureId,
@@ -78,9 +76,8 @@ public class TeacherController {
         return ResponseEntity.ok("Lecture cancelled successfully");
     }
 
-    // ==========================
-    // 4️⃣ Upload notes
-    // ==========================
+    
+    //  Upload notes
     @PostMapping("/lecture/{lectureId}/notes")
     public ResponseEntity<String> uploadNotes(
             @PathVariable Long lectureId,
